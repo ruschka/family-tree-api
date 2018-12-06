@@ -31,10 +31,11 @@ public class PersonControllerWebMvcTest {
 
     @Test
     public void getByIdTest() throws Exception {
-        when(this.personService.findById("1")).thenReturn(Optional.of(new Person("Ruschka")));
+        when(this.personService.findById("1"))
+                .thenReturn(Optional.of(new Person("John", null, "Smith")));
         mvc.perform(get("/person/1"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("name", equalTo("Ruschka")));
+                .andExpect(jsonPath("lastName", equalTo("Smith")));
         when(this.personService.findById("2")).thenReturn(Optional.empty());
         mvc.perform(get("/person/2"))
                 .andExpect(status().isNotFound());

@@ -28,10 +28,10 @@ public class PersonRepositoryTest {
 
     @Test
     public void insertTest() {
-        personRepository.insert(new Person("Ruschka"));
-        Person result = mongoTemplate.findOne(query(where("name").is("Ruschka")), Person.class);
+        personRepository.insert(new Person("John", null, "Smith"));
+        Person result = mongoTemplate.findOne(query(where("lastName").is("Smith")), Person.class);
         assertNotNull(result);
         assertNotNull(result.getId());
-        assertEquals("Ruschka", result.getName());
+        assertEquals("Smith", result.getLastName());
     }
 }
